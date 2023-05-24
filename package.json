@@ -8,7 +8,8 @@
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
     "lint": "vue-cli-service lint",
-    "danger": "danger pr https://bitbucket.gad.local/projects/INET-NMS-NG/repos/provize-planner/pull-requests/1453/overview"
+    "lint:fix": "vue-cli-service lint --fix",
+    "danger": "danger pr"
   },
   "dependencies": {
     "core-js": "^3.8.3",
@@ -32,6 +33,7 @@
     "@vue/eslint-config-typescript": "^9.1.0",
     "@vue/test-utils": "^2.0.0-0",
     "@vue/vue3-jest": "^27.0.0-alpha.1",
+    "babel-eslint": "^10.1.0",
     "babel-jest": "^27.0.6",
     "cypress": "^9.7.0",
     "danger": "^11.2.6",
