@@ -1,5 +1,5 @@
 // Import the feedback functions
-import { message, warn, fail, markdown } from "danger"
+import { message, warn, fail, markdown, danger } from "danger"
 
 // Add a message to the table
 message("This is a normal message")
