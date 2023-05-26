@@ -1,12 +1,17 @@
 <template>
-    <div>
-      <button class="btn" v-show="loggedIn">Logout</button>
-    </div>
-  </template>
+  <div>
+    <button
+      v-show="loggedIn"
+      class="btn"
+    >
+      Logout
+    </button>
+  </div>
+</template>
   
   <script lang="ts">
   export default {
-    name: 'app-header',
+    name: 'AppHeader',
     data() {
       return {
         loggedIn: false
