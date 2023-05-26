@@ -11,7 +11,7 @@
     "test:e2e": "vue-cli-service test:e2e",
     "lint": "vue-cli-service lint",
     "lint:fix": "vue-cli-service lint --fix",
-    "danger": "danger --dangerfile dangerfile.js pr https://github.com/itajaymca/integrate-vue-with-danger/pull/2"
+    "danger": "danger --dangerfile dangerfile pr https://github.com/itajaymca/integrate-vue-with-danger/pull/2"
   },
   "dependencies": {
     "core-js": "^3.8.3",
