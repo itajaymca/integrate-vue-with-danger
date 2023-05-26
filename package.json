@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "license": "MIT",
   "author": "Ajay Sharma",
+  "type": "module",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -10,7 +11,7 @@
     "test:e2e": "vue-cli-service test:e2e",
     "lint": "vue-cli-service lint",
     "lint:fix": "vue-cli-service lint --fix",
-    "danger": "danger"
+    "danger": "danger --dangerfile dangerfile.js pr https://github.com/itajaymca/integrate-vue-with-danger/pull/2"
   },
   "dependencies": {
     "core-js": "^3.8.3",

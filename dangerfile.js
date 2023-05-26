@@ -1,6 +1,7 @@
 // Import the feedback functions
-import { message, warn, fail, markdown, danger } from "danger"
+import { message, warn, fail, markdown, danger } from "danger";
 
+console.log('we are here.');
 // Add a message to the table
 message("This is a normal message")
 
