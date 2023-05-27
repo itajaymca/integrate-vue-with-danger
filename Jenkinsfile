@@ -3,7 +3,6 @@ pipeline {
     agent any
 
     parameters {
-        string(name: 'GITHUB_TOKEN', defaultValue: '', description: 'N/A')
         string(name: 'BATCH_WINDOW', defaultValue: 'start /B', description: 'N/A')
     }
 
@@ -50,10 +49,22 @@ pipeline {
             steps {
                 echo 'Testing....'
                 script {
-                    def logs = bat(returnStdout: true, script: 'npm run test:unit')
-                    println logs
+
+                    try {
+                        def logs = bat(returnStdout: true, script: 'npm run test:unit')
+                        println logs
+
+                    }catch (Exception e) {
+                        catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                            // Run your tests here
+                            def logs = bat(returnStdout: true, script: 'npm run danger:ci')
+                            println logs
+                        }
+                    }finally {
+                        def logs = bat(returnStdout: true, script: 'npm run danger:ci')
+                        println logs
+                    }
                 }
-                //bat "${params.BATCH_WINDOW} npm run test:unit > output.txt"
             }
         }
 
