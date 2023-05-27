@@ -3,7 +3,7 @@ pipeline {
     agent any
 
     parameters {
-        string(name: 'GITHUB_TOKEN', defaultValue: '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', description: 'N/A')
+        string(name: 'GITHUB_TOKEN', defaultValue: '', description: 'N/A')
         string(name: 'BATCH_WINDOW', defaultValue: 'start /B', description: 'N/A')
     }
 
