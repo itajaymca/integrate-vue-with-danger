@@ -1,4 +1,8 @@
 module.exports = {
+    parserOptions: {
+      // Required for certain syntax usages
+      "ecmaVersion": 2020
+    },
     env: {
         "node": true,
         "commonjs": true,

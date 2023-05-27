@@ -1,90 +1,36 @@
-pipeline {
 
-    agent any
 
-    parameters {
-        string(name: 'BATCH_WINDOW', defaultValue: 'start /B', description: 'N/A')
+node {
+
+    stage('Checkout'){
+        // Checkout the repository
+        checkout([
+            $class: 'GitSCM', 
+            branches: [[name: '*/main']], 
+            userRemoteConfigs: [[url: 'https://github.com/itajaymca/integrate-vue-with-danger.git']]])
     }
 
-    stages {
+    stage('Install Dependencies') {
+        // Execute npm install command
+        bat 'npm install'  // For Windows agents
+    }
 
-        stage('Checkout') {
-            steps {
+    stage('Lint') {
+        // Execute npm install command
+        bat 'npm run lint'  // For Windows agents
+    }
 
-                git url: 'https://github.com/itajaymca/integrate-vue-with-danger.git', 
-                branch: 'feature/add-code-to-generate-report',
-                credentialsId: "${params.GITHUB_TOKEN}"
-                
-            }
-        }
+    stage('Build') {
+        // Use the declared parameters
+        bat 'npm run build'  // For Windows agents
+    }
 
-        stage('Init') {
+    stage('Test') {
+        bat 'npm run test'  // For Windows agents
+    }
 
-            steps {
-                
-                echo 'Download all dependencies using command `npm install` '
-                script {
-                    def logs = bat(returnStdout: true, script: 'npm install')
-                    println logs
-                }
-            }
-
-        }
-
-        stage('Build') {
-            
-            steps {
-                echo 'Step to create artifacts using build'
-                script {
-                    def logs = bat(returnStdout: true, script: 'npm run build')
-                    println logs
-                }
-                // bat "${params.BATCH_WINDOW} npm run build > output.txt"
-
-            }
-        }
-
-        stage('Test') {
-
-            steps {
-                echo 'Testing....'
-                script {
-
-                    try {
-                        def logs = bat(returnStdout: true, script: 'npm run test:unit')
-                        println logs
-
-                    }catch (Exception e) {
-                        catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                            // Run your tests here
-                            def logs = bat(returnStdout: true, script: 'npm run danger:ci')
-                            println logs
-                        }
-                    }finally {
-                        def logs = bat(returnStdout: true, script: 'npm run danger:ci')
-                        println logs
-                    }
-                }
-            }
-        }
-
-        stage('Danger Report') {
-
-            steps {
-                echo 'Danger reports....'
-                script {
-                    def logs = bat(returnStdout: true, script: 'npm run danger')
-                    println logs
-                }
-                // bat "${params.BATCH_WINDOW} npm run danger > output.txt"
-            }
-        }
-
-        stage('Deploy') {
-
-            steps {
-                echo 'Deploying....'
-            }
-        }
+    stage('Deploy') {
+        // Deploy the artifacts
+        // ...
     }
 }
