@@ -1,15 +1,19 @@
 {
   "name": "code-report",
   "version": "0.1.0",
-  "private": true,
+  "license": "MIT",
+  "author": "Ajay Sharma",
+  "type": "commonjs",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "test": "jest --coverage",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
     "lint": "vue-cli-service lint",
     "lint:fix": "vue-cli-service lint --fix",
-    "danger": "danger pr"
+    "danger": "danger --dangerfile dangerfile.ts pr https://github.com/itajaymca/integrate-vue-with-danger/pull/2",
+    "danger:ci": "danger --dangerfile dangerfile.ts ci"
   },
   "dependencies": {
     "core-js": "^3.8.3",
@@ -19,6 +23,8 @@
     "vuex": "^4.0.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.21.8",
+    "@babel/eslint-parser": "^7.21.8",
     "@types/jest": "^27.0.1",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
@@ -33,7 +39,6 @@
     "@vue/eslint-config-typescript": "^9.1.0",
     "@vue/test-utils": "^2.0.0-0",
     "@vue/vue3-jest": "^27.0.0-alpha.1",
-    "babel-eslint": "^10.1.0",
     "babel-jest": "^27.0.6",
     "cypress": "^9.7.0",
     "danger": "^11.2.6",

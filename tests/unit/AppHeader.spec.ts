@@ -8,8 +8,8 @@ describe('AppHeader', () => {
       });
       
     test("if logged in, show logout button", () => {
-    	const wrapper = mount(AppHeader);
-    	wrapper.setData({ loggedIn: true });
-    	expect(wrapper.find("button").isVisible()).toBe(true);
+      const wrapper = mount(AppHeader);
+      wrapper.setData({ loggedIn: true });
+      expect(wrapper.find("button").isVisible()).toBe(true);
     });
 });
