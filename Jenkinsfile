@@ -7,6 +7,15 @@ pipeline {
     }
 
     stages {
+
+        stage('Checkout Branch') {
+            steps {
+                checkout([$class: 'GitSCM',
+                    branches: [[name: '*/main'], [name: '*/feature']], // Specify the branch pattern to checkout
+                    userRemoteConfigs: [[url: 'https://github.com/itajaymca/integrate-vue-with-danger.git']]])
+            }
+        }
+
         stage('Install Packages') {
             steps {
                 echo 'Install packages'
