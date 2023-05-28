@@ -2,13 +2,7 @@ pipeline {
     agent any
 
     options {
-        logRotator (
-            numToKeep(10) // Number of build logs to keep
-            daysToKeep(30) // Number of days to keep build logs
-            artifactDaysToKeep(30) // Number of days to keep archived artifacts
-            artifactNumToKeep(10) // Number of archived artifacts to keep
-        )
-
+        buildDiscarder(logRotator(numToKeepStr: '20'))
         skipDefaultCheckout()
         disableConcurrentBuilds()
     }
