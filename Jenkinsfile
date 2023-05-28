@@ -1,19 +1,6 @@
 pipeline {
     agent any
 
-    branchSources {
-        branchSource {
-            source {
-                git {
-                    remote('https://github.com/itajaymca/integrate-vue-with-danger.git')
-                    // credentialsId('your-credentials-id') // Optional: If authentication is required
-                    includes('feature/*') // Specify branch pattern to include
-                    excludes('bugfix/*') // Specify branch pattern to exclude
-                }
-            }
-        }
-    }
-
     stages {
         stage('Clean Branch') {
             steps {
