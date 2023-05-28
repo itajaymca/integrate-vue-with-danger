@@ -1,24 +1,38 @@
 pipeline {
     agent any
 
+    options {
+        logRotator {
+            numToKeep(10) // Number of build logs to keep
+            daysToKeep(30) // Number of days to keep build logs
+            artifactDaysToKeep(30) // Number of days to keep archived artifacts
+            artifactNumToKeep(10) // Number of archived artifacts to keep
+        }
+
+        skipDefaultCheckout()
+        disableConcurrentBuilds()
+    }
+
     stages {
-        stage('Clean Branch') {
+
+        stage('Clean working directory') {
             steps {
-                echo 'Clean Branch...'
-                // Add build steps here
+                deleteDir() // Clean the workspace directory
             }
         }
 
         stage('Install Packages') {
             steps {
-                echo 'Packages...'
+                echo 'Install packages'
+                bat 'npm install'
                 // Add build steps here
             }
         }
 
         stage('Validate Linting') {
             steps {
-                echo 'Linting...'
+                echo 'Run Lint command'
+                bat 'npm run lint'
                 // Add build steps here
             }
         }
@@ -26,7 +40,7 @@ pipeline {
         stage('Run Unit Tests') {
             steps {
                 echo 'Run Unit tests...'
-                // Add build steps here
+                bat 'npm run test:unit'
             }
         }
 
