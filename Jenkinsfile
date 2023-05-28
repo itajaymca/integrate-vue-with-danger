@@ -7,13 +7,6 @@ pipeline {
     }
 
     stages {
-
-        stage('Clean working directory') {
-            steps {
-                deleteDir() // Clean the workspace directory
-            }
-        }
-
         stage('Install Packages') {
             steps {
                 echo 'Install packages'
