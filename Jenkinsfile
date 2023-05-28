@@ -1,36 +1,89 @@
+pipeline {
+    agent any
 
+    branchSources {
+        branchSource {
+            source {
+                git {
+                    remote('https://github.com/itajaymca/integrate-vue-with-danger.git')
+                    // credentialsId('your-credentials-id') // Optional: If authentication is required
+                }
+            }
 
-node {
-
-    stage('Checkout'){
-        // Checkout the repository
-        checkout([
-            $class: 'GitSCM', 
-            branches: [[name: '*/main']], 
-            userRemoteConfigs: [[url: 'https://github.com/itajaymca/integrate-vue-with-danger.git']]])
+            strategy {
+                defaultBranchPropertyStrategy {
+                    props {
+                        // Customize branch properties as needed
+                    }
+                }
+            }
+        }
     }
 
-    stage('Install Dependencies') {
-        // Execute npm install command
-        bat 'npm install'  // For Windows agents
+    // Source for pull requests
+    pullRequestSource {
+        source {
+            git {
+                remote('https://github.com/itajaymca/integrate-vue-with-danger.git')
+                // credentialsId('your-credentials-id') // Optional: If authentication is required
+            }
+        }
+        strategy {
+            // Customize pull request strategy as needed
+        }
     }
 
-    stage('Lint') {
-        // Execute npm install command
-        bat 'npm run lint'  // For Windows agents
+    stages {
+        stage('Clean Branch') {
+            steps {
+                echo 'Clean Branch...'
+                // Add build steps here
+            }
+        }
+
+        stage('Install Packages') {
+            steps {
+                echo 'Packages...'
+                // Add build steps here
+            }
+        }
+
+        stage('Validate Linting') {
+            steps {
+                echo 'Linting...'
+                // Add build steps here
+            }
+        }
+
+        stage('Run Unit Tests') {
+            steps {
+                echo 'Run Unit tests...'
+                // Add build steps here
+            }
+        }
+
+        stage('Run Sonar Code Coverage') {
+            steps {
+                echo 'Sonar code coverage...'
+                // Add build steps here
+            }
+        }
+
+        stage('Run Dependency') {
+            steps {
+                echo 'Dependency...'
+                // Add build steps here
+            }
+        }
+
+        stage('Build Artifact') {
+            steps {
+                echo 'Building Artifact...'
+                // Add build steps here
+            }
+        }
+
     }
 
-    stage('Build') {
-        // Use the declared parameters
-        bat 'npm run build'  // For Windows agents
-    }
 
-    stage('Test') {
-        bat 'npm run test'  // For Windows agents
-    }
-
-    stage('Deploy') {
-        // Deploy the artifacts
-        // ...
-    }
 }
