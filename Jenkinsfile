@@ -7,29 +7,10 @@ pipeline {
                 git {
                     remote('https://github.com/itajaymca/integrate-vue-with-danger.git')
                     // credentialsId('your-credentials-id') // Optional: If authentication is required
+                    includes('feature/*') // Specify branch pattern to include
+                    excludes('bugfix/*') // Specify branch pattern to exclude
                 }
             }
-
-            strategy {
-                defaultBranchPropertyStrategy {
-                    props {
-                        // Customize branch properties as needed
-                    }
-                }
-            }
-        }
-    }
-
-    // Source for pull requests
-    pullRequestSource {
-        source {
-            git {
-                remote('https://github.com/itajaymca/integrate-vue-with-danger.git')
-                // credentialsId('your-credentials-id') // Optional: If authentication is required
-            }
-        }
-        strategy {
-            // Customize pull request strategy as needed
         }
     }
 
