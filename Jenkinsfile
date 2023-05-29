@@ -19,6 +19,16 @@ pipeline {
         stage ('Print all environment variables') {
             steps {
                 script {
+
+                    def jenkinsHome = env['JENKINS_HOME']
+                def workspace = env['WORKSPACE']
+                def buildNumber = env['BUILD_NUMBER']
+
+                // Print environment variable values
+                println "Jenkins Home: $jenkinsHome"
+                println "Workspace: $workspace"
+                println "Build Number: $buildNumber"
+                
                     for (def variable in env) {
                         println "Variable: ${variable.key}, Value: ${variable.value}"
                     }
