@@ -18,7 +18,7 @@ pipeline {
 
         stage ('Print all environment variables') {
 
-            steps {
+            script {
                 for (def variable in env) {
                     println "Variable: ${variable.key}, Value: ${variable.value}"
                 }
