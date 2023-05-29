@@ -17,9 +17,13 @@ pipeline {
         }
 
         stage ('Print all environment variables') {
-            for (def variable in env) {
-                println "Variable: ${variable.key}, Value: ${variable.value}"
+
+            steps {
+                for (def variable in env) {
+                    println "Variable: ${variable.key}, Value: ${variable.value}"
+                }
             }
+            
         }
 
         stage('Install Packages') {
